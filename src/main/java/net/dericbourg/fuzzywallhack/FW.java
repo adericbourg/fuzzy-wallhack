@@ -1,9 +1,7 @@
 package net.dericbourg.fuzzywallhack;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import net.dericbourg.fuzzywallhack.data.ComplexData;
+import net.dericbourg.fuzzywallhack.data.RootData;
 
 /**
  * Application entry point.
@@ -14,25 +12,26 @@ public class FW {
 
         // TODO Generator parameters.
 
-        Map<String, Object> innerData = new LinkedHashMap<>();
-        innerData.put("inner", "string");
-        innerData.put("name", "first_name");
-        ComplexData cd = new ComplexData(innerData);
+        ComplexData innerComplexData = new ComplexData.Builder()
+                .withProperty("inner", "string")
+                .withProperty("name", "first_name")
+                .build();
 
-        Map<String, Object> data = new LinkedHashMap<>();
-        data.put("field1", "string");
-        data.put("field2", "word");
-        data.put("field3", "integer");
-        data.put("field4", cd);
+        ComplexData data = new ComplexData.Builder()
+                .withProperty("field1", "string")
+                .withProperty("field2", "word")
+                .withProperty("field3", "integer")
+                .withProperty("field4", innerComplexData)
+                .build();
 
-        ComplexData root = new ComplexData(data);
+        RootData root = new RootData(data);
 
         for (int i = 0; i < 10; i++) {
             System.out.println(generate(root));
         }
     }
 
-    private static String generate(ComplexData data) {
+    private static String generate(RootData data) {
         return data.generate();
     }
 }

@@ -1,16 +1,19 @@
 package net.dericbourg.fuzzywallhack.data;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import net.dericbourg.fuzzywallhack.generators.Generator;
 import net.dericbourg.fuzzywallhack.generators.GeneratorRegistry;
 
+import com.google.common.collect.ImmutableMap;
+
 public class ComplexData {
 
     private final Map<String, Object> data;
 
-    public ComplexData(Map<String, Object> data) {
-        this.data = data;
+    private ComplexData(Builder builder) {
+        this.data = ImmutableMap.copyOf(builder.innerData);
     }
 
     public String generate() {
@@ -49,5 +52,20 @@ public class ComplexData {
         String type = (String) value;
         Generator generator = GeneratorRegistry.getGenerator(type);
         return generator.generate();
+    }
+
+    public static class Builder {
+
+        private Map<String, Object> innerData = new LinkedHashMap<>();
+
+        public Builder withProperty(String name, Object data) {
+            innerData.put(name, data);
+            return this;
+        }
+
+
+        public ComplexData build() {
+            return new ComplexData(this);
+        }
     }
 }
