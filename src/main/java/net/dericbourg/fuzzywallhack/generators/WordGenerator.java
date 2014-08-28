@@ -12,7 +12,7 @@ import com.google.common.io.Resources;
 /**
  * Word generator. Any kind of word.
  */
-public class WordGenerator implements SimpleGenerator {
+public class WordGenerator implements Generator {
 
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(WordGenerator.class);
 

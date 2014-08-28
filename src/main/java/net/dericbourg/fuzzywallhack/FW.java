@@ -25,10 +25,10 @@ public class FW {
         data.put("field3", "integer");
         data.put("field4", cd);
 
-        ComplexData d = new ComplexData(data);
+        ComplexData root = new ComplexData(data);
 
         for (int i = 0; i < 10; i++) {
-            System.out.println(generate(d));
+            System.out.println(generate(root));
         }
     }
 

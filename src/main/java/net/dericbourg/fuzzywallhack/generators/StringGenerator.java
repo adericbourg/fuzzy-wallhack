@@ -3,7 +3,7 @@ package net.dericbourg.fuzzywallhack.generators;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-public class StringGenerator implements SimpleGenerator {
+public class StringGenerator implements Generator {
 
     private SecureRandom random = new SecureRandom();
 

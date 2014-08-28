@@ -2,7 +2,7 @@ package net.dericbourg.fuzzywallhack.data;
 
 import java.util.Map;
 
-import net.dericbourg.fuzzywallhack.generators.SimpleGenerator;
+import net.dericbourg.fuzzywallhack.generators.Generator;
 import net.dericbourg.fuzzywallhack.generators.GeneratorRegistry;
 
 public class ComplexData {
@@ -15,8 +15,8 @@ public class ComplexData {
 
     public String generate() {
         StringBuilder sb = new StringBuilder();
-        boolean first = true;
         sb.append("{ ");
+        boolean first = true;
         for (Map.Entry<String, Object> entry : data.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
@@ -47,7 +47,7 @@ public class ComplexData {
             throw new IllegalArgumentException("String expected, found" + value.getClass());
         }
         String type = (String) value;
-        SimpleGenerator generator = GeneratorRegistry.getGenerator(type);
+        Generator generator = GeneratorRegistry.getGenerator(type);
         return generator.generate();
     }
 }

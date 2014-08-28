@@ -2,7 +2,7 @@ package net.dericbourg.fuzzywallhack.generators;
 
 import java.util.Random;
 
-public class IntegerGenerator implements SimpleGenerator {
+public class IntegerGenerator implements Generator {
 
     private final Random random = new Random(System.nanoTime());
 
