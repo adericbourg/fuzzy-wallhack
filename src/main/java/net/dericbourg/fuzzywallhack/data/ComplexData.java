@@ -42,7 +42,7 @@ public class ComplexData {
         return sb.toString();
     }
 
-    private String generateForType(Object value) {
+    private static String generateForType(Object value) {
         if (!(value instanceof String)) {
             throw new IllegalArgumentException("String expected, found" + value.getClass());
         }
