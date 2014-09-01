@@ -25,7 +25,7 @@ public class FW {
 
         ObjectGenerator complexArrayData = new ObjectGenerator.Builder()
                 .withProperty("val1", "integer")
-                .withProperty("val2", "word")
+                .withProperty("val2", "uuid")
                 .build();
         ArrayGenerator complexArray = new ArrayGenerator(complexArrayData, 2);
 
