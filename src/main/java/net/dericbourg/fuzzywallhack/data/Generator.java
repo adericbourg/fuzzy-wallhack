@@ -7,16 +7,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-public class RootData {
+public class Generator {
 
     private final GenerationConfiguration configuration;
     private final ComplexData data;
 
-    public RootData(ComplexData data) {
-        this(data, new GenerationConfiguration());
-    }
-
-    public RootData(ComplexData data, GenerationConfiguration configuration) {
+    public Generator(ComplexData data, GenerationConfiguration configuration) {
         this.configuration = configuration;
         this.data = data;
     }
