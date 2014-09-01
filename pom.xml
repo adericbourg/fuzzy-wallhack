@@ -130,7 +130,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.7</version>
                 <configuration>
-                    <source>1.7</source>
+                    <source>1.6</source>
                     <encoding>UTF-8</encoding>
                     <minmemory>512M</minmemory>
                     <maxmemory>1024M</maxmemory>
