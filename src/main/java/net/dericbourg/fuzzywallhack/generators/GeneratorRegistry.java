@@ -6,7 +6,8 @@ public enum GeneratorRegistry implements Generator {
     STRING("string", new StringGenerator()),
     FIRST_NAME("first_name", new FirstNameGenerator()),
     WORD("word", new WordGenerator()),
-    UUID("uuid", new UuidGenerator());
+    UUID("uuid", new UuidGenerator()),
+    BOOLEAN("bool", new BooleanGenerator());
 
     private final String type;
     private final Generator generator;
