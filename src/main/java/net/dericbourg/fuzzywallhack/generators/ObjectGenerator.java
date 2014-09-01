@@ -5,11 +5,11 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 
-public class ComplexDataGenerator implements Generator {
+public class ObjectGenerator implements NestedDataGenerator {
 
     private final Map<String, Object> data;
 
-    private ComplexDataGenerator(Builder builder) {
+    private ObjectGenerator(Builder builder) {
         this.data = ImmutableMap.copyOf(builder.innerData);
     }
 
@@ -40,7 +40,7 @@ public class ComplexDataGenerator implements Generator {
 
     public static class Builder {
 
-        private Map<String, Object> innerData = new LinkedHashMap<>();
+        private Map<String, Object> innerData = new LinkedHashMap<String, Object>();
 
         public Builder withProperty(String name, Object data) {
             innerData.put(name, data);
@@ -48,8 +48,8 @@ public class ComplexDataGenerator implements Generator {
         }
 
 
-        public ComplexDataGenerator build() {
-            return new ComplexDataGenerator(this);
+        public ObjectGenerator build() {
+            return new ObjectGenerator(this);
         }
     }
 }

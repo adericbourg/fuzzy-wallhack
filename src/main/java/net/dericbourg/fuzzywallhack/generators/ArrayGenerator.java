@@ -3,7 +3,7 @@ package net.dericbourg.fuzzywallhack.generators;
 /**
  * Array generator.
  */
-public class ArrayGenerator implements Generator {
+public class ArrayGenerator implements NestedDataGenerator {
 
     private final Object dataType;
     private final int size;

@@ -10,9 +10,9 @@ import com.google.gson.JsonParser;
 public class RootGenerator {
 
     private final GenerationConfiguration configuration;
-    private final ComplexDataGenerator data;
+    private final ObjectGenerator data;
 
-    public RootGenerator(ComplexDataGenerator data, GenerationConfiguration configuration) {
+    public RootGenerator(ObjectGenerator data, GenerationConfiguration configuration) {
         this.configuration = configuration;
         this.data = data;
     }

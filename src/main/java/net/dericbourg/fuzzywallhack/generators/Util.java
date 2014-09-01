@@ -6,10 +6,8 @@ class Util {
 
     static String generate(Object generator) {
         StringBuilder sb = new StringBuilder();
-        if (generator instanceof ComplexDataGenerator) {
-            sb.append(((ComplexDataGenerator) generator).generate());
-        } else if (generator instanceof ArrayGenerator) {
-            sb.append(((ArrayGenerator) generator).generate());
+        if (generator instanceof NestedDataGenerator) {
+            sb.append(((NestedDataGenerator) generator).generate());
         } else {
             sb.append(generateForType(generator));
         }
