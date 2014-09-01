@@ -1,18 +1,15 @@
-package net.dericbourg.fuzzywallhack.data;
+package net.dericbourg.fuzzywallhack.generators;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import net.dericbourg.fuzzywallhack.generators.Generator;
-import net.dericbourg.fuzzywallhack.generators.GeneratorRegistry;
-
 import com.google.common.collect.ImmutableMap;
 
-public class ComplexData {
+public class ComplexDataGenerator implements Generator {
 
     private final Map<String, Object> data;
 
-    private ComplexData(Builder builder) {
+    private ComplexDataGenerator(Builder builder) {
         this.data = ImmutableMap.copyOf(builder.innerData);
     }
 
@@ -33,26 +30,13 @@ public class ComplexData {
             sb.append("\"");
             sb.append(key);
             sb.append("\": ");
-            if (value instanceof ComplexData) {
-                sb.append(((ComplexData) value).generate());
-            } else {
-                sb.append("\"");
-                sb.append(generateForType(value));
-                sb.append("\"");
-            }
+            sb.append(Util.generate(value));
         }
         sb.append(" }");
         return sb.toString();
     }
 
-    private static String generateForType(Object value) {
-        if (!(value instanceof String)) {
-            throw new IllegalArgumentException("String expected, found" + value.getClass());
-        }
-        String type = (String) value;
-        Generator generator = GeneratorRegistry.getGenerator(type);
-        return generator.generate();
-    }
+
 
     public static class Builder {
 
@@ -64,8 +48,8 @@ public class ComplexData {
         }
 
 
-        public ComplexData build() {
-            return new ComplexData(this);
+        public ComplexDataGenerator build() {
+            return new ComplexDataGenerator(this);
         }
     }
 }

@@ -9,6 +9,7 @@ public class StringGenerator implements Generator {
 
     @Override
     public String generate() {
-        return new BigInteger(130, random).toString(32);
+        String value = new BigInteger(130, random).toString(32);
+        return "\"" + value + "\"";
     }
 }

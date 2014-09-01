@@ -1,4 +1,4 @@
-package net.dericbourg.fuzzywallhack.data;
+package net.dericbourg.fuzzywallhack.generators;
 
 import net.dericbourg.fuzzywallhack.api.GenerationConfiguration;
 
@@ -7,12 +7,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-public class Generator {
+public class RootGenerator {
 
     private final GenerationConfiguration configuration;
-    private final ComplexData data;
+    private final ComplexDataGenerator data;
 
-    public Generator(ComplexData data, GenerationConfiguration configuration) {
+    public RootGenerator(ComplexDataGenerator data, GenerationConfiguration configuration) {
         this.configuration = configuration;
         this.data = data;
     }

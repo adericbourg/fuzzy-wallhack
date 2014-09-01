@@ -34,6 +34,7 @@ public class WordGenerator implements Generator {
 
     @Override
     public String generate() {
-        return iterator.next();
+        String value = iterator.next();
+        return "\"" + value + "\"";
     }
 }
