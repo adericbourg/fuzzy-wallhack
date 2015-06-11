@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+// FIXME Refactor this to map type to class name and use injection. And then, unit test. UNIT TEST ALL THE THINGS!
 public enum GeneratorRegistry implements Generator {
 
     INTEGER("integer", new IntegerGenerator()),
