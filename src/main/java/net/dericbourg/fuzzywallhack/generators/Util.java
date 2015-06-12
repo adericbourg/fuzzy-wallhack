@@ -12,10 +12,9 @@ class Util {
         if (generator instanceof NestedDataGenerator) {
             sb.append(((NestedDataGenerator) generator).generate());
         } else {
-            generateForType(generator).ifPresentOrElse(
-                    sb::append,
-                    () -> { throw new IllegalArgumentException("No generator found for type " + generator); }
-            );
+            sb.append(generateForType(generator).orElseThrow(() ->
+                            new IllegalArgumentException("No generator found for type " + generator)
+            ));
         }
         return sb.toString();
     }
