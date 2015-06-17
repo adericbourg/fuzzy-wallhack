@@ -1,27 +1,15 @@
 package net.dericbourg.fuzzywallhack.generators;
 
-import com.google.common.collect.ImmutableList;
-
-import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
-// FIXME Refactor this to map type to class name and use injection. And then, unit test. UNIT TEST ALL THE THINGS!
-public enum GeneratorRegistry implements Generator {
+public enum GeneratorRegistry {
 
     INTEGER("integer", new IntegerGenerator()),
     STRING("string", new StringGenerator()),
-    FIRST_NAME("first_name", new FirstNameGenerator()),
-    WORD("word", new WordGenerator()),
     UUID("uuid", new UuidGenerator()),
-    BOOLEAN("bool", new BooleanGenerator());
-
-    private static final Map<String, Generator> reverseRegistry = ImmutableList.copyOf(values())
-            .stream()
-            .collect(Collectors.toMap(
-                    GeneratorRegistry::getType, Function.identity()
-            ));
+    BOOLEAN("bool", new BooleanGenerator()),
+    STRUCTURE("structure", new StructureGenerator()),
+    ARRAY("array", new ArrayGenerator());
 
     private final String type;
     private final Generator generator;
@@ -35,11 +23,12 @@ public enum GeneratorRegistry implements Generator {
         return type;
     }
 
-    public String generate() {
-        return generator.generate();
-    }
-
     public static Optional<Generator> getGenerator(String type) {
-        return Optional.ofNullable(reverseRegistry.get(type));
+        for (GeneratorRegistry generatorRegistry : values()) {
+            if (generatorRegistry.getType().equals(type)) {
+                return Optional.of(generatorRegistry.generator);
+            }
+        }
+        return Optional.empty();
     }
 }

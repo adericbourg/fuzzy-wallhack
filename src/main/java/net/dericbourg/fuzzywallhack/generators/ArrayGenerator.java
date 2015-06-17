@@ -1,20 +1,17 @@
 package net.dericbourg.fuzzywallhack.generators;
 
+import net.dericbourg.fuzzywallhack.descriptors.PropertyType;
+import net.dericbourg.fuzzywallhack.descriptors.type.ArrayType;
+
 /**
  * Array generator.
  */
-public class ArrayGenerator implements NestedDataGenerator {
-
-    private final Object dataType;
-    private final int size;
-
-    public ArrayGenerator(Object dataType, int size) {
-        this.dataType = dataType;
-        this.size = size;
-    }
+public class ArrayGenerator implements Generator<ArrayType.ArrayParameters> {
 
     @Override
-    public String generate() {
+    public String generate(ArrayType.ArrayParameters parameters) {
+        PropertyType<?> innerType = parameters.getInnerType();
+        int size = parameters.getSize();
 
         StringBuilder sb = new StringBuilder();
         sb.append("[");
@@ -26,7 +23,10 @@ public class ArrayGenerator implements NestedDataGenerator {
             } else {
                 sb.append(",");
             }
-            sb.append(Util.generate(dataType));
+            sb.append(GeneratorRegistry.getGenerator(innerType.getName())
+                            .map(g -> g.generate(innerType.getParameters()))
+                            .orElseThrow(() -> new RuntimeException("Could not generate inner array value"))
+            );
         }
 
         sb.append("]");

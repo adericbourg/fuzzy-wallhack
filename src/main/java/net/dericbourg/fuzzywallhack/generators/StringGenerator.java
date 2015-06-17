@@ -1,14 +1,16 @@
 package net.dericbourg.fuzzywallhack.generators;
 
+import net.dericbourg.fuzzywallhack.descriptors.PropertyTypeParameters;
+
 import java.math.BigInteger;
-import java.security.SecureRandom;
+import java.util.Random;
 
 public class StringGenerator implements Generator {
 
-    private SecureRandom random = new SecureRandom();
+    private final Random random = new Random();
 
     @Override
-    public String generate() {
+    public String generate(PropertyTypeParameters parameters) {
         String value = new BigInteger(130, random).toString(32);
         return "\"" + value + "\"";
     }

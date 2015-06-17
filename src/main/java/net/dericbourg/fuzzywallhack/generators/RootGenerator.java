@@ -1,31 +1,36 @@
 package net.dericbourg.fuzzywallhack.generators;
 
-import net.dericbourg.fuzzywallhack.api.GenerationConfiguration;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import net.dericbourg.fuzzywallhack.descriptors.Property;
+import net.dericbourg.fuzzywallhack.descriptors.PropertyTypeBuilder;
+import net.dericbourg.fuzzywallhack.descriptors.StructureDescriptor;
+import net.dericbourg.fuzzywallhack.descriptors.type.StructureType;
 
 public class RootGenerator {
 
-    private final GenerationConfiguration configuration;
-    private final ObjectGenerator data;
+    public String generate(StructureDescriptor descriptor) {
+        StructureType.Builder structure = PropertyTypeBuilder.structure();
+        for (Property property : descriptor.getProperties()) {
+            structure.addProperty(property.getName(), property.getType());
+        }
+        StructureType build = structure.build();
 
-    public RootGenerator(ObjectGenerator data, GenerationConfiguration configuration) {
-        this.configuration = configuration;
-        this.data = data;
+        String json = GeneratorRegistry.getGenerator(build.getName())
+                .map(generator -> generator.generate(build.getParameters()))
+                .orElseThrow(() -> new IllegalArgumentException("No generator found for type: " + build.getName()));
+
+        return format(json);
     }
 
-    public String generate() {
-        String generate = data.generate();
-        if (configuration.isFormatted()) {
-            JsonParser parser = new JsonParser();
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private String format(String json) {
+        JsonParser parser = new JsonParser();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-            JsonElement el = parser.parse(generate);
-            generate = gson.toJson(el);
-        }
-        return generate;
+        JsonElement el = parser.parse(json);
+        return gson.toJson(el);
     }
 }

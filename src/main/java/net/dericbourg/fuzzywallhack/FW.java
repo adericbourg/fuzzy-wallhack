@@ -1,8 +1,10 @@
 package net.dericbourg.fuzzywallhack;
 
 import net.dericbourg.fuzzywallhack.api.GenerationConfiguration;
-import net.dericbourg.fuzzywallhack.generators.ArrayGenerator;
-import net.dericbourg.fuzzywallhack.generators.ObjectGenerator;
+import net.dericbourg.fuzzywallhack.descriptors.PropertyTypeBuilder;
+import net.dericbourg.fuzzywallhack.descriptors.StructureDescriptor;
+import net.dericbourg.fuzzywallhack.descriptors.type.ArrayType;
+import net.dericbourg.fuzzywallhack.descriptors.type.StructureType;
 import net.dericbourg.fuzzywallhack.generators.RootGenerator;
 
 /**
@@ -16,32 +18,40 @@ public class FW {
         GenerationConfiguration cfg = new GenerationConfiguration();
         cfg.setFormatted(true);
 
-        ObjectGenerator innerComplexData = new ObjectGenerator.Builder()
-                .withProperty("inner", "string")
-                .withProperty("name", "first_name")
+        StructureType innerComplexData = PropertyTypeBuilder.structure()
+                .addProperty("inner", PropertyTypeBuilder.string().build())
+               // .addProperty("name", null)
                 .build();
 
-        ArrayGenerator simpleArray = new ArrayGenerator("string", 5);
-
-        ObjectGenerator complexArrayData = new ObjectGenerator.Builder()
-                .withProperty("val1", "integer")
-                .withProperty("val2", "uuid")
+        ArrayType simpleArray = PropertyTypeBuilder.array()
+                .withInnerType(PropertyTypeBuilder.string().build())
+                .withSize(5)
                 .build();
-        ArrayGenerator complexArray = new ArrayGenerator(complexArrayData, 2);
 
-        ObjectGenerator data = new ObjectGenerator.Builder()
-                .withProperty("field1", "string")
-                .withProperty("field2", "word")
-                .withProperty("field3", "integer")
+
+        ArrayType complexArray = PropertyTypeBuilder.array()
+                .withInnerType(PropertyTypeBuilder.structure()
+                                .addProperty("val1", PropertyTypeBuilder.integer().build())
+                                .addProperty("val2", PropertyTypeBuilder.uuid().build())
+                                .build()
+                )
+                .build();
+
+
+        StructureDescriptor data = new StructureDescriptor.Builder()
+                .withProperty("field1", PropertyTypeBuilder.string().build())
+                        // .addProperty("field2", PropertyTypeBuilder.word().build())
+                .withProperty("field3", PropertyTypeBuilder.integer().build())
                 .withProperty("field4", innerComplexData)
                 .withProperty("field5", simpleArray)
                 .withProperty("field6", complexArray)
+                .withProperty("field7", PropertyTypeBuilder.bool().build())
                 .build();
 
-        RootGenerator rootGenerator = new RootGenerator(data, cfg);
+        RootGenerator rootGenerator = new RootGenerator();
 
         for (int i = 0; i < 10; i++) {
-            System.out.println(rootGenerator.generate());
+            System.out.println(rootGenerator.generate(data));
             System.out.println("--");
         }
     }
