@@ -19,7 +19,7 @@ public enum GeneratorRegistry {
         this.generator = generator;
     }
 
-    String getType() {
+    private String getType() {
         return type;
     }
 
