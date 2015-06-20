@@ -1,7 +1,11 @@
 package net.dericbourg.fuzzywallhack.generators;
 
-import net.dericbourg.fuzzywallhack.descriptors.type.*;
+import net.dericbourg.fuzzywallhack.descriptors.type.IntegerType;
+import net.dericbourg.fuzzywallhack.descriptors.type.StringType;
+import net.dericbourg.fuzzywallhack.descriptors.type.StructureType;
+import net.dericbourg.fuzzywallhack.descriptors.type.UuidType;
 import net.dericbourg.fuzzywallhack.descriptors.type.array.ArrayTypeBuilder;
+import net.dericbourg.fuzzywallhack.descriptors.type.bool.BooleanTypeBuilder;
 import org.junit.Test;
 
 import java.util.HashSet;
@@ -36,7 +40,7 @@ public class GeneratorRegistryTest {
     public void property_type_name_should_match_registry_name() {
         assertThat(new ArrayTypeBuilder().build().getName())
                 .isEqualTo(ARRAY.getType());
-        assertThat(new BooleanType.Builder().build().getName())
+        assertThat(new BooleanTypeBuilder().build().getName())
                 .isEqualTo(BOOLEAN.getType());
         assertThat(new IntegerType.Builder().build().getName())
                 .isEqualTo(INTEGER.getType());
