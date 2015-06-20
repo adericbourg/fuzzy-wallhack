@@ -1,8 +1,8 @@
 package net.dericbourg.fuzzywallhack.descriptors.type.array;
 
 import net.dericbourg.fuzzywallhack.descriptors.PropertyTypeBuilder;
-import net.dericbourg.fuzzywallhack.descriptors.type.IntegerType;
 import net.dericbourg.fuzzywallhack.descriptors.type.bool.BooleanType;
+import net.dericbourg.fuzzywallhack.descriptors.type.integer.IntegerType;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
