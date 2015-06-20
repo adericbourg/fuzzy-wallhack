@@ -4,12 +4,12 @@ import java.util.Optional;
 
 public enum GeneratorRegistry {
 
+    ARRAY("array", new ArrayGenerator()),
+    BOOLEAN("bool", new BooleanGenerator()),
     INTEGER("integer", new IntegerGenerator()),
     STRING("string", new StringGenerator()),
-    UUID("uuid", new UuidGenerator()),
-    BOOLEAN("bool", new BooleanGenerator()),
     STRUCTURE("structure", new StructureGenerator()),
-    ARRAY("array", new ArrayGenerator());
+    UUID("uuid", new UuidGenerator());
 
     private final String type;
     private final Generator generator;
@@ -19,7 +19,7 @@ public enum GeneratorRegistry {
         this.generator = generator;
     }
 
-    private String getType() {
+    String getType() {
         return type;
     }
 
