@@ -1,15 +1,15 @@
 package net.dericbourg.fuzzywallhack.generators;
 
 import net.dericbourg.fuzzywallhack.descriptors.PropertyType;
-import net.dericbourg.fuzzywallhack.descriptors.type.ArrayType;
+import net.dericbourg.fuzzywallhack.descriptors.type.array.ArrayParameters;
 
 /**
  * Array generator.
  */
-public class ArrayGenerator implements Generator<ArrayType.ArrayParameters> {
+public class ArrayGenerator implements Generator<ArrayParameters> {
 
     @Override
-    public String generate(ArrayType.ArrayParameters parameters) {
+    public String generate(ArrayParameters parameters) {
         PropertyType<?> innerType = parameters.getInnerType();
         int size = parameters.getSize();
 

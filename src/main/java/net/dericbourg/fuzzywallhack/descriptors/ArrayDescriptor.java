@@ -1,6 +1,6 @@
 package net.dericbourg.fuzzywallhack.descriptors;
 
-import net.dericbourg.fuzzywallhack.descriptors.type.ArrayType;
+import net.dericbourg.fuzzywallhack.descriptors.type.array.ArrayType;
 
 public class ArrayDescriptor extends Descriptor {
     private final ArrayType arrayType;

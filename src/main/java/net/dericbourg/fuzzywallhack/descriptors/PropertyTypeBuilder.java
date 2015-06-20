@@ -1,6 +1,7 @@
 package net.dericbourg.fuzzywallhack.descriptors;
 
 import net.dericbourg.fuzzywallhack.descriptors.type.*;
+import net.dericbourg.fuzzywallhack.descriptors.type.array.ArrayTypeBuilder;
 
 public class PropertyTypeBuilder {
 
@@ -24,7 +25,7 @@ public class PropertyTypeBuilder {
         return new BooleanType.Builder();
     }
 
-    public static ArrayType.Builder array() {
-        return new ArrayType.Builder();
+    public static ArrayTypeBuilder array() {
+        return new ArrayTypeBuilder();
     }
 }

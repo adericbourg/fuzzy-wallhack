@@ -5,8 +5,8 @@ import net.dericbourg.fuzzywallhack.descriptors.ArrayDescriptor;
 import net.dericbourg.fuzzywallhack.descriptors.Descriptor;
 import net.dericbourg.fuzzywallhack.descriptors.ObjectDescriptor;
 import net.dericbourg.fuzzywallhack.descriptors.PropertyTypeBuilder;
-import net.dericbourg.fuzzywallhack.descriptors.type.ArrayType;
 import net.dericbourg.fuzzywallhack.descriptors.type.StructureType;
+import net.dericbourg.fuzzywallhack.descriptors.type.array.ArrayType;
 import net.dericbourg.fuzzywallhack.generators.RootGenerator;
 
 /**
