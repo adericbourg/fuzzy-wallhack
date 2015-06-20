@@ -1,11 +1,11 @@
 package net.dericbourg.fuzzywallhack.descriptors;
 
-import net.dericbourg.fuzzywallhack.descriptors.type.StringType;
 import net.dericbourg.fuzzywallhack.descriptors.type.StructureType;
 import net.dericbourg.fuzzywallhack.descriptors.type.UuidType;
 import net.dericbourg.fuzzywallhack.descriptors.type.array.ArrayTypeBuilder;
 import net.dericbourg.fuzzywallhack.descriptors.type.bool.BooleanTypeBuilder;
 import net.dericbourg.fuzzywallhack.descriptors.type.integer.IntegerTypeBuilder;
+import net.dericbourg.fuzzywallhack.descriptors.type.string.StringTypeBuilder;
 
 public class PropertyTypeBuilder {
 
@@ -13,8 +13,8 @@ public class PropertyTypeBuilder {
         return new StructureType.Builder();
     }
 
-    public static StringType.Builder string() {
-        return new StringType.Builder();
+    public static StringTypeBuilder string() {
+        return new StringTypeBuilder();
     }
 
     public static IntegerTypeBuilder integer() {

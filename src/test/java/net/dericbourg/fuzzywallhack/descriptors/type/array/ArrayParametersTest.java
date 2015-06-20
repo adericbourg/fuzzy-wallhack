@@ -1,7 +1,7 @@
 package net.dericbourg.fuzzywallhack.descriptors.type.array;
 
 import com.google.common.collect.ImmutableMap;
-import net.dericbourg.fuzzywallhack.descriptors.type.StringType;
+import net.dericbourg.fuzzywallhack.descriptors.type.string.StringType;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
