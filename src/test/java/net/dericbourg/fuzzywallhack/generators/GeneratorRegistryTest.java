@@ -65,8 +65,7 @@ public class GeneratorRegistryTest {
     private <T extends Generator> void checkGeneratorTypeFromRegistry(GeneratorRegistry registry, Class<T> expectedClass) {
         Optional<Generator> generator = getGenerator(registry);
         assertThat(generator).isPresent();
-        // FIXME refactor with AssertJ 3.1.0 (when it is out) to use assertContainsInstanceOf.
-        assertThat(generator.get()).isInstanceOf(expectedClass);
+        assertThat(generator).containsInstanceOf(expectedClass);
     }
 
     private Optional<Generator> getGenerator(GeneratorRegistry registry) {
