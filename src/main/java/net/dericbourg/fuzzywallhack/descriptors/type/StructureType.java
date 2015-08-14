@@ -1,5 +1,6 @@
 package net.dericbourg.fuzzywallhack.descriptors.type;
 
+import net.dericbourg.fuzzywallhack.descriptors.Property;
 import net.dericbourg.fuzzywallhack.descriptors.PropertyType;
 import net.dericbourg.fuzzywallhack.descriptors.PropertyTypeParameters;
 
@@ -43,8 +44,8 @@ public class StructureType implements PropertyType<StructureType.StructureParame
     public static class Builder {
         private final Map<String, Object> parameters = new HashMap<>();
 
-        public Builder addProperty(String name, PropertyType<?> propertyType) {
-            parameters.put(name, propertyType);
+        public Builder addProperty(Property property) {
+            parameters.put(property.getName(), property.getType());
             return this;
         }
 
